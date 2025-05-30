@@ -1,0 +1,100 @@
+/* src/App.css */
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+.App-header button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.App-header button:hover {
+  background-color: #21a1f1;
+}
+
+.App-header p {
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.event-list {
+  margin-top: 20px;
+}
+
+.event-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-item h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.event-item p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.event-item button {
+  padding: 8px 15px;
+  font-size: 14px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.event-item button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.event-item button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  background-color: #ffebee;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.success-message {
+  color: green;
+  background-color: #e8f5e9;
+  border: 1px solid green;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
