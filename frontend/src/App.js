@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers'; 
 import EventBookingArtifact from './contracts/EventBooking.json';
@@ -66,6 +65,7 @@ function App() {
     }
   };
 
+
   const loadEvents = useCallback(async () => {
     if (!contract || !account) {
         console.log("loadEvents: Contract or account not ready.", { contractExists: !!contract, accountExists: !!account });
@@ -76,15 +76,15 @@ function App() {
     setSuccessMessage('');
     try {
       const eventCountBigInt = await contract.eventCount();
-      const eventCount = Number(eventCountBigInt); // Convert bigint to number
+      const eventCount = Number(eventCountBigInt); // Convert bigint to number because eventCount is a BigInt in ethers v6
       const loadedEvents = [];
 
       for (let i = 0; i < eventCount; i++) {
         const eventData = await contract.events(i);
-        // eventData is a structure: [name, capacity, registered]
-        // In ethers v6, capacity and registered will be BigInts
+        // Dans le contrat un evenement est une strcuture contenant: [name, capacity, registered]
         const capacityNum = Number(eventData.capacity);
         const registeredNum = Number(eventData.registered);
+        //verifier si l'utilisateur a reservé cet evenement en utilisant la fonction reservations dans le contrat pour obtenir le booléen
         const userHasReserved = await contract.reservations(account, i);
 
         loadedEvents.push({
@@ -158,7 +158,7 @@ function App() {
     try {
       // The contract instance already has the signer from initWeb3
       const tx = await contract.reserve(eventId);
-      await tx.wait(); // Wait for the transaction to be mined
+      await tx.wait(); // attendre que la transaction soit minée
       setSuccessMessage(`Successfully reserved a place for event ID ${eventId}!`);
       loadEvents(); // Reload events to update UI
     } catch (err) {
@@ -166,12 +166,12 @@ function App() {
       let reason = "Failed to reserve. ";
       if (err.data && err.data.message) { // Geth style error
         reason += err.data.message;
-      } else if (err.reason) { // Ethers v5/v6 style error
+      } else if (err.reason) {
         reason += err.reason;
       } else if (err.message) {
         reason += err.message;
       }
-      // More specific error messages based on common contract reverts
+      // message de l'erreur
       if (reason.toLowerCase().includes("already reserved")) {
         setError("You have already reserved this event.");
       } else if (reason.toLowerCase().includes("event is full")) {

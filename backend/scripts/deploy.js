@@ -1,4 +1,3 @@
-// scripts/deploy.js
 const hre = require("hardhat");
 
 async function main() {
@@ -18,7 +17,7 @@ async function main() {
   let tx;
 
   tx = await eventBooking.createEvent("Web3 Conf Paris", 100);
-  await tx.wait(); // en attendant que la transaction soit minée
+  await tx.wait(); //attendre que la transaction soit minée
   console.log("evenement 'Web3 Conf Paris' created.");
 
   tx = await eventBooking.createEvent("Solidity Summit", 50);

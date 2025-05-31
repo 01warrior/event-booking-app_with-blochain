@@ -2,6 +2,7 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract EventBooking {
+    
     struct Event {
         string name;
         uint capacity;
@@ -12,7 +13,7 @@ contract EventBooking {
     mapping(address => mapping(uint => bool)) public reservations;
     uint public eventCount;
     address public owner;
-()
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can create events");
         _;
